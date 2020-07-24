@@ -21,9 +21,14 @@ function activateTimer(){
 } */
 
 chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
+    async function(request, sender, sendResponse) {
         console.log("recieved a message")
-        activateExtension()
+        if (!await activateExtension()){
+            //CHANGE: find a way to actually check if teh page has been loaded
+            console.log("extension failed to run, try one more time.")
+            sleep(20)
+            activateExtension()
+        }
     }
 )
 //activateExtension()
@@ -45,10 +50,13 @@ async function activateExtension() {
         let data = await getAvailability(id)
         //console.log("Josh Lineman")
         console.log(data)
-        addAvailability(data["variation_list"])
+        await addAvailability(data["variation_list"])
+        return true
 
     }else{
         console.log("Not Found")
+        return false
+
     }
 }
 

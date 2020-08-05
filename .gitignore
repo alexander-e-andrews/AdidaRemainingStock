@@ -1,2 +1,4 @@
 /publish
 jsconfig.json
+/build
+*.zip

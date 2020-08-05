@@ -1,14 +1,18 @@
 {
     "manifest_version": 2,
     "name": "Adidas Product Availability",
-    "version": "1.0",
+    "version": "1.0.1",
     "description": "Display the remaining stock left on adidas.com items.",
+    "icons":{
+        "128": "images/128.png"
+    },
     "background": {
         "scripts": [
             "background.js"
-        ]
+        ],
+        "persistent": false
     },
-    "permissions": ["*://www.adidas.com/*", "tabs", "webNavigation"],
+    "permissions": [ "webNavigation"],
     "content_scripts": [
         {
             "matches": [
